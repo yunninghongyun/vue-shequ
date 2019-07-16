@@ -4,61 +4,63 @@
       <li>
         <router-link
           @click.native="total = 856"
-          :class=" $route.fullPath === '/' || $route.fullPath==='/?tab=all' ? 'active' : ''"
-          to="/?tab=all"
+          :class=" $route.fullPath ===$publicUrl || $route.fullPath===$publicUrl+'/?tab=all' ? 'active' : ''"
+          :to="$publicUrl+'/?tab=all'"
         >全部</router-link>
       </li>
       <li>
         <router-link
           @click.native="total = 15"
-          :class="$route.fullPath==='/?tab=good' ? 'active' : ''"
-          to="/?tab=good"
+          :class="$route.fullPath===$publicUrl+'/?tab=good' ? 'active' : ''"
+          :to="$publicUrl+'/?tab=good'"
         >精华</router-link>
       </li>
       <li>
         <router-link
           @click.native="total = 3"
-          :class="$route.fullPath==='/?tab=weex' ? 'active' : ''"
-          to="/?tab=weex"
+          :class="$route.fullPath===$publicUrl+'/?tab=weex' ? 'active' : ''"
+          :to="$publicUrl+'/?tab=weex'"
         >weex</router-link>
       </li>
       <li>
         <router-link
           @click.native="total = 247"
-          :class="$route.fullPath==='/?tab=share' ? 'active' : ''"
-          to="/?tab=share"
+          :class="$route.fullPath===$publicUrl+'/?tab=share' ? 'active' : ''"
+          :to="$publicUrl+'/?tab=share'"
         >分享</router-link>
       </li>
       <li>
         <router-link
           @click.native="total = 577"
-          :class="$route.fullPath==='/?tab=ask' ? 'active' : ''"
-          to="/?tab=ask"
+          :class="$route.fullPath===$publicUrl+'/?tab=ask' ? 'active' : ''"
+          :to="$publicUrl+'/?tab=ask'"
         >问答</router-link>
       </li>
       <li>
         <router-link
           @click.native="total = 30"
-          :class="$route.fullPath==='/?tab=job' ? 'active' : ''"
-          to="/?tab=job"
+          :class="$route.fullPath===$publicUrl+'/?tab=job' ? 'active' : ''"
+          :to="$publicUrl+'/?tab=job'"
         >招聘</router-link>
       </li>
     </ul>
     <div class="content">
       <ul v-if="topics.length">
         <li v-for="topic in topics" :key="topic.id">
-          <router-link :to="`/user/${topic.author.loginname}`"><img :style="{width:'30px',height:'30px'}" :src="topic.author.avatar_url" alt /></router-link>
+          <router-link :to="`${$publicUrl}/user/${topic.author.loginname}`">
+            <img :style="{width:'30px',height:'30px'}" :src="topic.author.avatar_url" alt />
+          </router-link>
           <div class="count">
             <span class="reply_count">{{topic.reply_count}}</span>
             <span>/</span>
             <span class="visit_count">{{topic.visit_count}}</span>
           </div>
           <span
-            v-if="$route.fullPath === '/' || $route.fullPath==='/?tab=all' || topic.top || topic.good"
+            v-if="$route.fullPath ===$publicUrl || $route.fullPath===$publicUrl+'/?tab=all' || topic.top || topic.good"
             :class="{tab: true,active: topic.top || topic.good}"
-          >{{topic.top?'置顶': topic.good ? '精华': topic.tab === 'share'? '分享':topic.tab === 'ask'? '问答' : topic.tab === 'job'? '招聘' : 'weex' }}</span>
+          >{{topic.top?'置顶': topic.good ? '精华': topic.tab ===$publicUrl+ 'share'? '分享':topic.tab ===$publicUrl+ 'ask'? '问答' : topic.tab ===$publicUrl+ 'job'? '招聘' : 'weex' }}</span>
           <span class="title">
-            <router-link :to="`/topic/${topic.id}`">{{topic.title}}</router-link>
+            <router-link :to="`${$publicUrl}/topic/${topic.id}`">{{topic.title}}</router-link>
           </span>
           <span class="time">{{myMoment(topic.last_reply_at)}}</span>
         </li>
@@ -95,6 +97,7 @@ export default {
     "$route.fullPath": {
       immediate: true,
       handler() {
+        console.log(this.publicUrl);
         const tab = this.$route.query.tab || "all";
         const num = this.$route.query.page || 1;
         this.topics = [];
@@ -116,7 +119,7 @@ export default {
       // 页面改变触发的函数
       // 更改页面的地址 从而触发 watch 的 handler 从而实现页面数据的变化
       const tab = this.$route.query.tab || "all";
-      this.$router.push(`/?tab=${tab}&page=${num}`);
+      this.$router.push(`${this.$publicUrl}/?tab=${tab}&page=${num}`);
     }
   }
 };

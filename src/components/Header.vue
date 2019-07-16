@@ -1,12 +1,12 @@
 <template>
   <div class="header">
     <div class="header-inner">
-      <router-link to="/" class="logo">
+      <router-link :to="$publicUrl+'/'" class="logo">
         <img src="../assets/logo.png" alt />
         <h1>Vue.js</h1>
       </router-link>
-      <router-link to="/topic/create" v-if="userInfo" class="huati">发布话题</router-link>
-      <router-link to="/topic/xiaoxi" v-if="userInfo" class="xiaoxi">未读消息</router-link>
+      <router-link :to="$publicUrl+'/topic/create'" v-if="userInfo" class="huati">发布话题</router-link>
+      <router-link :to="$publicUrl+'/topic/xiaoxi'" v-if="userInfo" class="xiaoxi">未读消息</router-link>
       <div v-if="!userInfo" class="login">
         <input type="text" v-model="text" />
         <button @click="login">登录</button>

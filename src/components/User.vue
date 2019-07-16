@@ -1,7 +1,7 @@
 <template>
   <div v-if="user" class="user">
     <div class="top">
-      <router-link to="/">主页/</router-link>
+      <router-link :to="$publicUrl">主页/</router-link>
     </div>
     <div class="userInfo">
       <div class="tou">
@@ -14,7 +14,7 @@
     <div class="panel">
       <div class="header">最近创建的话题</div>
       <div class="cell" v-for="recent_topic in user.recent_topics" :key="recent_topic.id">
-        <router-link :to="`/user/${recent_topic.author.loginname}`">
+        <router-link :to="`${$publicUrl}/user/${recent_topic.author.loginname}`">
           <img :src="recent_topic.author.avatar_url" alt class="avatar" />
         </router-link>
         <div class="count">
@@ -23,7 +23,7 @@
           <span class="visit-count">{{recent_topic.visit_count}}</span>
         </div>
         <div class="title">
-          <router-link :to="`/topics/${recent_topic.id}`">{{recent_topic.title}}</router-link>
+          <router-link :to="`${$publicUrl}/topics/${recent_topic.id}`">{{recent_topic.title}}</router-link>
         </div>
         <span class="time">{{myMoment(recent_topic.last_reply_at)}}</span>
       </div>
@@ -31,7 +31,7 @@
     <div class="panel">
       <div class="header">最近参与的话题</div>
       <div class="cell" v-for="recent_replie in user.recent_replies" :key="recent_replie.id">
-        <router-link :to="`/user/${recent_replie.author.loginname}`">
+        <router-link :to="`${$publicUrl}/user/${recent_replie.author.loginname}`">
           <img :src="recent_replie.author.avatar_url" alt class="avatar" />
         </router-link>
         <div class="count">
@@ -40,7 +40,7 @@
           <span class="visit-count">{{recent_replie.visit_count}}</span>
         </div>
         <div class="title">
-          <router-link :to="`/topics/${recent_replie.id}`">{{recent_replie.title}}</router-link>
+          <router-link :to="`${$publicUrl}/topics/${recent_replie.id}`">{{recent_replie.title}}</router-link>
         </div>
         <span class="time">{{myMoment(recent_replie.last_reply_at)}}</span>
       </div>

@@ -1,7 +1,7 @@
 <template>
   <div class="public-topic">
     <div class="head">
-      <router-link to="/">主页/</router-link>
+      <router-link :to="$publicUrl">主页/</router-link>
       <span>发布话题</span>
     </div>
     <div class="main">

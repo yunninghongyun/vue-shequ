@@ -5,28 +5,29 @@ import Topic from './components/Topic'
 import User from './components/User'
 import CreateTopic from './components/CreateTopic'
 import Xiaoxi from './components/Xiaoxi'
+import { PUBLICURL } from './constants'
 Vue.use(VueRouter)
 
 export default new VueRouter({
   routes: [
     {
-      path: '/',
+      path: PUBLICURL + '/',
       component: Home
     },
     {
-      path: '/topic/create',
+      path: PUBLICURL + '/topic/create',
       component: CreateTopic
     },
     {
-      path: '/topic/xiaoxi',
+      path: PUBLICURL + '/topic/xiaoxi',
       component: Xiaoxi
     },
     {
-      path: '/topic/:id',
+      path: PUBLICURL + '/topic/:id',
       component: Topic
     },
     {
-      path: '/user/:loginname',
+      path: PUBLICURL + '/user/:loginname',
       component: User
     }
   ],

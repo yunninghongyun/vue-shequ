@@ -8,12 +8,12 @@
         <div class="inner-text">
           <router-link
             class="title"
-            :to="`/user/${hasNotMessage.author.loginname}`"
+            :to="`${$publicUrl}/user/${hasNotMessage.author.loginname}`"
           >{{hasNotMessage.author.loginname}}</router-link>
           <span class="padding-lr">{{hasNotMessage.type==='at'?'在话题':'回复了你的话题'}}</span>
           <router-link
             class="title"
-            :to="`/topics/${hasNotMessage.topic.id}`"
+            :to="`${$publicUrl}/topics/${hasNotMessage.topic.id}`"
           >{{hasNotMessage.topic.title}}</router-link>
           <span class="padding-lr">{{hasNotMessage.type==='at'?'中@了你':''}}</span>
         </div>
@@ -30,12 +30,12 @@
           <div class="inner-text">
             <router-link
               class="title"
-              :to="`/user/${hasMessage.author.loginname}`"
+              :to="`${$publicUrl}/user/${hasMessage.author.loginname}`"
             >{{hasMessage.author.loginname}}</router-link>
             <span class="padding-lr">{{hasMessage.type==='at'?'在话题':'回复了你的话题'}}</span>
             <router-link
               class="title"
-              :to="`/topics/${hasMessage.topic.id}`"
+              :to="`${$publicUrl}/topics/${hasMessage.topic.id}`"
             >{{hasMessage.topic.title}}</router-link>
             <span class="padding-lr">{{hasMessage.type==='at'?'中@了你':''}}</span>
           </div>
